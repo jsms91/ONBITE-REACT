@@ -1,4 +1,4 @@
-// 배열
+// 배열(section02 마지막 강의)
 // 1. 배열 생성
 let arrA = new Array(); // 배열 생성자
 let arrB = []; // 배열 리터럴(대부분 사용)
@@ -11,6 +11,7 @@ let item2 = arrC[1];
 
 console.log(item1, item2);
 arrC[0] = "ho";
+
 console.log(arrC);
 item1 = arrC[0];
 console.log(item1, item2);
