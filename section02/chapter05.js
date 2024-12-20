@@ -1,29 +1,61 @@
-//자료형
-//1. Number Type
-let num1 = 27;
-let num2 = 1.5;
-let num3 = -20;
+//3.5 원시타입 VS 객체타입
+//1. 원시타입(Number, String, Boolean...) :
+//값 자체로서 변수에 저장되고 복사된다.
+//불변값이다.
 
-let inf = Infinity;
-let mInf = -Infinity;
+let p1 = 1;
+let p2 = p1;
+console.log("p1 :" + p1); //1
+console.log("p2 :" + p2); //1
 
-let nan = NaN;
+p2 = 2;
+console.log("수정한 p2 :" + p2); //2
+console.log("p1 :" + p1); //1
 
-//2. String Type
-let myName = "인생";
-let myLocation = "강남 아파트";
-let introduce = myName + myLocation;
+console.log("----------");
 
-let introduceText = `${myName}은 ${myLocation}에 거주합니다.`; //템플릿 리터럴 문법
-console.log(introduceText);
+//2. 객체타입(Object, Array, Function...) :
+//참조값을 통해 변수에 저장되고 복사된다.
+//가변값이다.
 
-//3. Boolean Type
-let isSwitchOn = true;
-let isEmpty = false;
+let o1 = { name: "홍길동" };
+let o2 = o1;
 
-//4. Null Type(아무것도 없다.)
-let empty = null;
+console.log("o1 : " + o1.name);
+console.log("o2 : " + o2.name);
 
-//5. Undefined Type
-let none;
-console.log(none); //undefined이 출력(null과는 다르다)
+o2.name = "김철수"; //o2와 o1은 참조값이 같기 때문에 o2.name으로 값을 변경하면 o1.name이 참조하는 값도 같이 변경된다.
+console.log("수정된 o2 : " + o2.name);
+console.log("o1 : " + o1.name);
+
+//따라서 이렇게 할 경우 의도치 않은 문제가 발생할 수 있기 때문에
+//let o1 = {...o1}로 선언하여 새로운 참조값을 생성해 원본객체가 수정될 수 없게한다.
+
+//정리
+//얕은 복사
+//let o1 = { name: "홍길동" };
+//let o2 = o1; --> 객체의 참조값을 복사, 원본객체가 수정될 수 있어 위험
+
+//깊은 복사
+//let o1 = { name: "홍길동" };
+//let o1 = {...o1} --> 새로운 객체를 생성하면서 프로퍼티만 따로 복사 함,
+//원본객체가 수정될 일이 없어 안정하다.
+
+console.log("----------");
+
+let a1 = { name: "김철수" };
+let a2 = a1;
+let a3 = { ...a1 };
+
+console.log(a1 === a2); //true
+console.log(a1 === a3); //false
+console.log(JSON.stringify(a1) === JSON.stringify(a3)); //true
+//JSON.stringify() : 자바스크립트 내장 함수, 객체를 문자열로 변환하는 기능
+
+//정리
+//얕은 비교
+//a1 === a2 --> 참조값을 기준으로 비교
+
+//깊은 비교
+//JSON.stringify(a1) === JSON.stringify(a3) --> 객체를 문자열로 변환하여 비교,
+//JSON.stringfy 등의 내장 함수를 이용해야 함
